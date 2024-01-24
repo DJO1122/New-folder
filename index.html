@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple E-commerce</title>
+    <style>
+        /* Your CSS styles here */
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Simple E-commerce</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Product 1</h2>
+            <p>Price: $19.99</p>
+            <button onclick="addToCart('Product 1', 19.99)">Add to Cart</button>
+        </section>
+
+        <section>
+            <h2>Product 2</h2>
+            <p>Price: $29.99</p>
+            <button onclick="addToCart('Product 2', 29.99)">Add to Cart</button>
+        </section>
+
+        <!-- More product sections here -->
+    </main>
+
+    <aside>
+        <h2>Shopping Cart</h2>
+        <ul id="cart"></ul>
+        <p>Total: $<span id="total">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </aside>
+
+    <footer>
+        <p>&copy; 2023 Simple E-commerce</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartElement = document.getElementById('cart');
+            const totalElement = document.getElementById('total');
+
+            cartElement.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.product} - $${item.price.toFixed(2)}`;
+                cartElement.appendChild(li);
+            });
+
+            totalElement.textContent = total.toFixed(2);
+        }
+
+        function checkout() {
+            alert('Total amount: $' + total.toFixed(2));
+            // Additional steps for a real checkout process would go here
+        }
+    </script>
+</body>
+</html>
